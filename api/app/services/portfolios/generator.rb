@@ -84,8 +84,8 @@ module Portfolios
         competency_summary: rating&.dig(:competency_summary)
       }
 
-      if map.state != 'not_yet'
-        row.merge(assessment_status: 'assessed', ai_level: rating&.dig(:level) || 1, ai_confidence: Confidence.for(map))
+      if rating&.dig(:level)
+        row.merge(assessment_status: 'assessed', ai_level: rating[:level], ai_confidence: Confidence.for(map))
       else
         row.merge(assessment_status: 'insufficient_evidence', ai_level: nil, ai_confidence: nil)
       end
