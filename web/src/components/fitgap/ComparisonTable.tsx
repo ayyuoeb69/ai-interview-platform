@@ -74,7 +74,7 @@ export default function ComparisonTable({ comparisons }: ComparisonTableProps) {
                   {c.skill_label}
                   <ReasonNote comparison={c} />
                 </td>
-                <td className="px-4 py-2.5 text-center text-muted-foreground">{LEVEL_LABELS[(c as any).required_level]}</td>
+                <td className="px-4 py-2.5 text-center text-muted-foreground">{LEVEL_LABELS[c.expected_level]}</td>
                 <td className="px-4 py-2.5 text-center">
                   <CandidateLevel comparison={c} />
                 </td>
