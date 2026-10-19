@@ -27,6 +27,10 @@ RSpec.configure do |config|
 
   config.before do
     Sidekiq::Worker.clear_all
+    Sidekiq.redis do |redis|
+      keys = redis.call('KEYS', 'fitgap:enqueued:*')
+      redis.call('DEL', *keys) if keys.any?
+    end
     RequestStore.clear!
   end
 end

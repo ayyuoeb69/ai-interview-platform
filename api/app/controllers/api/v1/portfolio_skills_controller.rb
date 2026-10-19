@@ -9,6 +9,10 @@ module Api
 
       # POST /api/v1/portfolio-skills/:id/override
       def override
+        unless @portfolio_skill.assessed?
+          return json_error("Only assessed skills can be overridden", :unprocessable_entity)
+        end
+
         existing = @portfolio_skill.assessor_override
 
         if existing
