@@ -53,7 +53,7 @@ export default function OverridePanel({ skill, existingOverride, onSaved }: Over
               <span className="text-xs text-green-700 font-medium">Adjusted by assessor</span>
             </div>
             <Button variant="ghost" size="sm" onClick={() => setOpen(true)}>
-              <Pencil className="h-3 w-3 mr-1" /> Edit override
+              <Pencil className="h-3 w-3 mr-1" /> Edit rating
             </Button>
           </>
         ) : (

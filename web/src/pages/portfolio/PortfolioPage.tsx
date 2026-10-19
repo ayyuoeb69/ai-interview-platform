@@ -170,7 +170,7 @@ export default function PortfolioPage() {
       {status === "load_error" && (
         <div className="border border-destructive/40 rounded-lg p-6 text-center space-y-3">
           <AlertCircle className="h-6 w-6 text-destructive mx-auto" />
-          <p className="text-sm">Couldn't load this portfolio. Check your connection, then try again.</p>
+          <p className="text-sm">Couldn't load this portfolio. Try again, or go back to the session list.</p>
           <Button variant="outline" size="sm" onClick={load}>
             <RefreshCw className="h-3.5 w-3.5 mr-1.5" /> Try again
           </Button>
