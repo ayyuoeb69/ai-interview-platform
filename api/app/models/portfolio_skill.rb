@@ -17,6 +17,7 @@ class PortfolioSkill < ApplicationRecord
 
   def assessed? = assessment_status == 'assessed'
 
+  # evidence is stored as JSONB array of quote strings
   def evidence_quotes
     Array(evidence)
   end

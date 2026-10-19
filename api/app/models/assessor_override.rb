@@ -13,6 +13,6 @@ class AssessorOverride < ApplicationRecord
   def skill_must_be_assessed
     return if portfolio_skill.nil? || portfolio_skill.assessed?
 
-    errors.add(:base, 'Only assessed skills can be overridden. Schedule a follow-up session to rate this skill.')
+    errors.add(:base, 'Only assessed skills can be overridden')
   end
 end
