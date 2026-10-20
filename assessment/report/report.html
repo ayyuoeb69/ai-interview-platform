@@ -88,9 +88,9 @@
 <h3>Step 3 — Problem definition</h3>
 <p>Static review, then runtime confirmation where possible. Findings are separated into <em>missing specification</em> and <em>defective implementation</em>, ranked P0–P3 (section 4). Escalation items are listed as constraint signals.</p>
 <h3>Step 4 — Strategy, acceptance criteria, trade-offs</h3>
-<p>Wrote and committed the option comparison and acceptance criteria <em>before</em> implementation (<code>assessment/02-options-and-acceptance-criteria.md</code>, commit <code>6c700d9</code>).</p>
+<p>Wrote and committed the option comparison and acceptance criteria <em>before</em> implementation (<code>assessment/02-options-and-acceptance-criteria.md</code>, commit <code>6eeed98</code>).</p>
 <h3>Step 5 — Implementation</h3>
-<p>Test-first where it mattered: the tenant-isolation specs were committed failing (<code>02641c0</code>), then the fix (<code>259d132</code>). Small commits: harness → security fix → docs → migration and generator → fit/gap → web harness → web → CI → seeded fault → screenshots.</p>
+<p>Test-first where it mattered: the tenant-isolation specs were committed failing (<code>2d394fb</code>), then the fix (<code>046ffa7</code>). Small commits: harness → security fix → docs → migration and generator → fit/gap → web harness → web → CI → seeded fault → screenshots.</p>
 <h3>Step 6 — Verification</h3>
 <p>Ran the new specs against the original code, the seeded fault test with visible history, a migration up/down/up on a database with existing rows, browser checks at 1280 px and 375 px, and a CI simulation on a freshly created test database.</p>
 
@@ -257,24 +257,24 @@
 
 <h3>Watched them fail</h3>
 <ul>
-  <li><strong>Tenant isolation</strong>: committed red first (<code>02641c0</code>): 5 of 7 failing with 200/201/202 instead of 404. Green after <code>259d132</code>. Logs: <code>evidence/01-…-red.txt</code>, <code>02-…-green.txt</code>.</li>
+  <li><strong>Tenant isolation</strong>: committed red first (<code>2d394fb</code>): 5 of 7 failing with 200/201/202 instead of 404. Green after <code>046ffa7</code>. Logs: <code>evidence/01-…-red.txt</code>, <code>02-…-green.txt</code>.</li>
   <li><strong>Generator spec against the original generator</strong>: 22 of 23 fail (<code>evidence/04-…</code>). To be precise: part of that count comes from the intentional change in the model's output schema, not only from the L1 bug.</li>
   <li><strong>Fit/gap polling</strong>: temporarily re-introducing "trigger on every poll" made the test fail with <em>expected 1 call, got 6</em>.</li>
 </ul>
 
 <h3>Seeded fault test (branch <code>scratch/seeded-fault</code>, merged with history)</h3>
-<pre>* b700dc2 Merge seeded fault test history
+<pre>* e12dd4d Merge seeded fault test history
 |\
-| * 8b1bb34 Revert "SEEDED FAULT: fall back to L1 when the model gives no level"
-| * 7994a3f Revert "SEEDED FAULT: read required_level in the comparison table"
-| * 5c9498a SEEDED FAULT: read required_level in the comparison table
-| * f92944f SEEDED FAULT: fall back to L1 when the model gives no level
+| * 17197a5 Revert "SEEDED FAULT: fall back to L1 when the model gives no level"
+| * 2c99c57 Revert "SEEDED FAULT: read required_level in the comparison table"
+| * 2d233a3 SEEDED FAULT: read required_level in the comparison table
+| * 4d3f54f SEEDED FAULT: fall back to L1 when the model gives no level
 |/
-* dabbe91 Add CI for API specs and web type-check, tests and build</pre>
+* d01c37e Add CI for API specs and web type-check, tests and build</pre>
 <ul>
-  <li><strong>API fault</strong> (<code>f92944f</code>): treat any discussed skill as assessed with <code>level || 1</code>. RSpec: <strong>49 examples, 8 failures</strong>, e.g. <em>expected assessment_status "insufficient_evidence", ai_level nil, but had "assessed", 1</em>.</li>
-  <li><strong>Web fault</strong> (<code>5c9498a</code>): read <code>required_level</code> again. Vitest: <strong>1 failed</strong>, "shows the required level sent by the API".</li>
-  <li>Both reverted; suites green again; the tree is byte-identical to <code>dabbe91</code>. Logs in <code>evidence/05–08</code>.</li>
+  <li><strong>API fault</strong> (<code>4d3f54f</code>): treat any discussed skill as assessed with <code>level || 1</code>. RSpec: <strong>49 examples, 8 failures</strong>, e.g. <em>expected assessment_status "insufficient_evidence", ai_level nil, but had "assessed", 1</em>.</li>
+  <li><strong>Web fault</strong> (<code>2d233a3</code>): read <code>required_level</code> again. Vitest: <strong>1 failed</strong>, "shows the required level sent by the API".</li>
+  <li>Both reverted; suites green again; the tree is byte-identical to <code>d01c37e</code>. Logs in <code>evidence/05–08</code>.</li>
 </ul>
 
 <h3>AI verification moments</h3>
